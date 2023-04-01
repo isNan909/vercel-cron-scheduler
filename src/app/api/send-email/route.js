@@ -23,12 +23,14 @@ export async function GET(req, res) {
     from: 'Weather News <mailgun@VERCEL_CRON_EMAIL>',
     to: 'forthosewhocode@gmail.com',
     subject: 'Your Daily Weather Report',
-    text: `
-    ${forecastData?.Headline?.Text}
-    ${forecastData?.Headline?.Category}
-    Temp Min: ${forecastData.DailyForecasts[0].Temperature.Minimum.Value}° ${forecastData.DailyForecasts[0].Temperature.Minimum.Unit}
-    Temp Max: ${forecastData.DailyForecasts[0].Temperature.Maximum.Value}° ${forecastData.DailyForecasts[0].Temperature.Maximum.Unit}
-    Visit link: ${forecastData?.Headline?.Link}
+    html: `
+    <h1>${forecastData?.Headline?.Text}</h1>
+    <p>${forecastData?.Headline?.Category}</p>
+    <ul>
+    <li>Temp Min: ${forecastData.DailyForecasts[0].Temperature.Minimum.Value}° ${forecastData.DailyForecasts[0].Temperature.Minimum.Unit}</li>
+    <li>Temp Max: ${forecastData.DailyForecasts[0].Temperature.Maximum.Value}° ${forecastData.DailyForecasts[0].Temperature.Maximum.Unit}</li>
+    </ul>
+    <button>${forecastData?.Headline?.Link}</button>
     `
   };
 
